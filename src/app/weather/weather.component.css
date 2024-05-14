@@ -1,0 +1,59 @@
+.img-responsive {
+  display: block;
+  height: auto;
+  max-width: 100%;
+}
+
+.divFloatRight{
+    float:right;
+}
+
+.divFloatLeft{
+    float:left;
+}
+
+.weatherDiv {
+  border: 1px solid #000000;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+  margin:5px;
+}
+
+.dateText{
+    color:#ff0000;
+}
+
+.forcastText{
+    font-size:18px;
+    color:#000000;
+}
+
+.divPadding{
+    padding-top:20px;
+    padding-bottom:20px;
+}
+
+.cityTitleAlign {
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+.cityTitle {
+  font-size: 20px;
+  
+}
+.divPaddingBottom{
+    padding-bottom:10px;
+}
+
+.divPaddingTop{
+    padding-top:10px
+}
+
+.searchBox {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  width: 50%;
+}

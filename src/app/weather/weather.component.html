@@ -1,0 +1,200 @@
+
+<div class="row">
+  <div class="col-12">
+    <h1> Weather App</h1>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12 textCenter">
+    <div>
+      <form class="example-form">
+        <input type="text"
+               placeholder="Search for a City"
+               [formControl]="control"
+               [matAutocomplete]="auto"
+               class="example-input searchBox">
+        <mat-autocomplete #auto="matAutocomplete">
+          @for (city of filteredCities | async; track city) {
+          <mat-option [value]="city.LocalizedName" (click)="updateWeather(city)">{{city.LocalizedName}}</mat-option>
+          }
+        </mat-autocomplete>
+      </form>
+    </div>
+  </div>
+</div>
+@if(weathers.DailyForecasts != undefined){
+
+<div class="row divPadding">
+  <div class="col-12">
+    <div class="row divPaddingBottom">
+      <span class="forcastText"> Current Weather</span>
+    </div>
+    <div class="row cityTitleAlign">
+        <div class="col-6">
+          <div class="col-12">
+            <span class="cityTitle">
+              {{currentCity.LocalizedName}}
+            </span>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="row">
+            <div class="col-2">Day:</div>
+            <div class="col-10">
+              <div class="divFloatLeft">
+                @if(currentWeather.Day.Icon < 10){
+                <img class="img-responsive"
+                     src="https://developer.accuweather.com/sites/default/files/0{{currentWeather.Day.Icon}}-s.png"
+                     alt="{{currentWeather.Day.IconPhrase}}">
+                }
+                @else{
+                <img class="img-responsive"
+                     src="https://developer.accuweather.com/sites/default/files/{{currentWeather.Day.Icon}}-s.png"
+                     alt="{{currentWeather.Day.IconPhrase}}">
+                }
+              </div>
+              <div class="divFloatLeft">
+                <div class="divFloatLeft">
+                  <span>
+                    {{currentWeather.Temperature.Maximum.Value}}
+                  </span>
+                </div>
+                <div class="divFloatLeft">
+                  <span>
+                    &deg;
+                  </span>
+                </div>
+                <div class="divFloatRight">
+                  <span>
+                    {{currentWeather.Temperature.Maximum.Unit}}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-2">Night:</div>
+            <div class="col-10">
+              <div class="divFloatLeft">
+                @if(currentWeather.Night.Icon < 10){
+                <img class="img-responsive"
+                     src="https://developer.accuweather.com/sites/default/files/0{{currentWeather.Night.Icon}}-s.png"
+                     alt="{{currentWeather.Night.IconPhrase}}">
+                }
+                @else{
+                <img class="img-responsive"
+                     src="https://developer.accuweather.com/sites/default/files/{{currentWeather.Night.Icon}}-s.png"
+                     alt="{{currentWeather.Night.IconPhrase}}">
+                }
+
+              </div>
+              <div class="divFloatLeft">
+                <div class="divFloatLeft">
+                  <span>
+                    {{currentWeather.Temperature.Minimum.Value}}
+                  </span>
+                </div>
+                <div class="divFloatLeft">
+                  <span>
+                    &deg;
+                  </span>
+                </div>
+                <div class="divFloatRight">
+                  <span>
+                    {{currentWeather.Temperature.Minimum.Unit}}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12">
+    <span class="forcastText"> 5 Days Forcast</span>
+    <div class="row divPaddingTop">
+      @for(weather of weathers.DailyForecasts; let i = $index; track weather){
+      <div class="col-2 weatherDiv">
+        <div class="row">
+          <span class="dateText">
+            {{weather.Date | date:'dd/MM/YYYY'}}
+          </span>
+        </div>
+        <div class="row">
+          <div class="col-2">Day:</div>
+          <div class="col-10">
+            <div class="divFloatLeft">
+              @if(weather.Day.Icon < 10){
+              <img class="img-responsive"
+                   src="https://developer.accuweather.com/sites/default/files/0{{weather.Day.Icon}}-s.png"
+                   alt="{{weather.Day.IconPhrase}}">
+              }
+              @else{
+              <img class="img-responsive"
+                   src="https://developer.accuweather.com/sites/default/files/{{weather.Day.Icon}}-s.png"
+                   alt="{{weather.Day.IconPhrase}}">
+              }
+            </div>
+            <div class="divFloatLeft">
+              <div class="divFloatLeft">
+                <span>
+                  {{weather.Temperature.Maximum.Value}}
+                </span>
+              </div>
+              <div class="divFloatLeft">
+                <span>
+                  &deg;
+                </span>
+              </div>
+              <div class="divFloatRight">
+                <span>
+                  {{weather.Temperature.Maximum.Unit}}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-2">Night:</div>
+          <div class="col-10">
+            <div class="divFloatLeft">
+              @if(currentWeather.Night.Icon < 10){
+              <img class="img-responsive"
+                   src="https://developer.accuweather.com/sites/default/files/0{{weather.Night.Icon}}-s.png"
+                   alt="{{weather.Night.IconPhrase}}">
+              }
+              @else{
+              <img class="img-responsive"
+                   src="https://developer.accuweather.com/sites/default/files/{{weather.Night.Icon}}-s.png"
+                   alt="{{weather.Night.IconPhrase}}">
+              }
+
+            </div>
+            <div class="divFloatLeft">
+              <div class="divFloatLeft">
+                <span>
+                  {{weather.Temperature.Minimum.Value}}
+                </span>
+              </div>
+              <div class="divFloatLeft">
+                <span>
+                  &deg;
+                </span>
+              </div>
+              <div class="divFloatRight">
+                <span>
+                  {{weather.Temperature.Minimum.Unit}}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+</div>
+}
+
